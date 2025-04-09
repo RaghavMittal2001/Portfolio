@@ -1,5 +1,3 @@
-
-
 export default{
     name: 'testimonial',
     title: 'Testimonial',

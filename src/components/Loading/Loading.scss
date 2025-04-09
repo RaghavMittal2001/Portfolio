@@ -1,0 +1,92 @@
+// LoadingSpinner.scss
+
+// Variables
+$spinner-small: 20px;
+$spinner-medium: 40px;
+$spinner-large: 60px;
+
+$color-primary: #3498db;
+$color-secondary: #2ecc71;
+$color-accent: #e74c3c;
+$color-neutral: #95a5a6;
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  
+  // Size variations
+  &.small {
+    .spinner {
+      width: $spinner-small;
+      height: $spinner-small;
+      border-width: 2px;
+    }
+  }
+  
+  &.medium {
+    .spinner {
+      width: $spinner-medium;
+      height: $spinner-medium;
+      border-width: 3px;
+    }
+  }
+  
+  &.large {
+    .spinner {
+      width: $spinner-large;
+      height: $spinner-large;
+      border-width: 4px;
+    }
+  }
+  
+  // Color variations
+  &.primary .spinner {
+    border-top-color: $color-primary;
+  }
+  
+  &.secondary .spinner {
+    border-top-color: $color-secondary;
+  }
+  
+  &.accent .spinner {
+    border-top-color: $color-accent;
+  }
+  
+  &.neutral .spinner {
+    border-top-color: $color-neutral;
+  }
+}
+
+.spinner {
+  border-radius: 50%;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .spin-element {
+    animation: spin 2s infinite linear;
+    will-change: transform; /* hint to the browser for optimization */
+  }
+  
+// Optional form-specific styling
+.form-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}

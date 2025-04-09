@@ -2,18 +2,21 @@ import React, { useEffect, useState } from "react";
 import { motion as Motion } from "framer-motion";
 import "./About.scss";
 import { client, urlFor } from "../../client";
-import { AppWrap } from "../../wrapper";
+import { AppWrap, MotionWrap } from "../../wrapper";
 
 const About = () => {
-  const [abouts,setabout]=useState([]);
-  useEffect(()=>{
+  const [abouts, setabout] = useState([]);
+  useEffect(() => {
     const query = '*[_type=="abouts"]';
-    client.fetch(query).then((data)=>{
-      setabout(data);
-    }).catch((error)=>{
-      console.error("Error fetching about data:", error);
-    })
-  },[])
+    client
+      .fetch(query)
+      .then((data) => {
+        setabout(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching about data:", error);
+      });
+  }, []);
   return (
     <>
       <h2 className="head-text">
@@ -35,10 +38,8 @@ const About = () => {
             <h2 className="bold-text" style={{ marginTop: 20 }}>
               {about.title}
             </h2>
-            <p className="p-text" style={{ marginTop: 10 , color:"#030303"}}> 
-              
-              { 
-              about.description}
+            <p className="p-text" style={{ marginTop: 10, color: "#030303" }}>
+              {about.description}
             </p>
           </Motion.div>
         ))}
@@ -47,5 +48,9 @@ const About = () => {
   );
 };
 
-const WrapperAbout  =AppWrap(About, "about");
+const WrapperAbout = AppWrap(
+  MotionWrap(About, "app__about"),
+  "about",
+  "app__whitebg"
+);
 export default WrapperAbout;
